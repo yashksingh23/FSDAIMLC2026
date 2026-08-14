@@ -1,7 +1,6 @@
 function sum(a, b) {
     return a + b;
 }
-
 function login(msg, err) {
     if (err) {
         console.log("Error is " + err);
@@ -9,7 +8,6 @@ function login(msg, err) {
         console.log("Welcome " + msg);
     }
 }
-
 function loginVerification(username, password, clbk) {
     if (username == "yash1610" && password == "XYZ") {
         clbk("Success", null);
@@ -17,5 +15,4 @@ function loginVerification(username, password, clbk) {
         clbk(null, "Username or password is incorrect");
     }
 }
-
 loginVerification("yash1610", "XYZ", login);
