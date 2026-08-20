@@ -1,14 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Product Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 40px 20px;
+        }
+
+        .main {
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        #btn {
+            display: block;
+            margin: 25px auto;
+            padding: 13px 30px;
+
+            border: none;
+            border-radius: 30px;
+
+            background: white;
+            color: #667eea;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+            transition: 0.3s;
+        }
+
+        #btn:hover {
+            transform: translateY(-3px);
+            background: #f1f1f1;
+        }
+
+        #container {
+            width: 100%;
+            min-height: 200px;
+        }
+
+        #container h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f5f5ff;
+        }
+
+        td:nth-child(2),
+        td:nth-child(4) {
+            text-align: left;
+            min-width: 250px;
+        }
+
+        td img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .cart-btn {
+            background: #28a745;
+            color: white;
+
+            border: none;
+            padding: 10px 15px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .cart-btn:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+
+        .loading {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .error {
+            background: white;
+            color: red;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <!-- <h2>Hello</h2> -->
-     <div id="container"></div>
-     <button id="btn">Display</button>
-    <script src="./usefetch.js"></script>
+
+    <div class="main">
+
+        <div class="header">
+            <h1>🛍️ My Product Store</h1>
+            <p>Explore products using Fake Store API</p>
+        </div>
+
+        <button id="btn">
+            Show Products
+        </button>
+
+        <div id="container"></div>
+
+    </div>
+
+    <script src="useFetch.js"></script>
+
 </body>
 </html>

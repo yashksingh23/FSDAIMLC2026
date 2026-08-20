@@ -1,71 +1,102 @@
-const div = document.getElementById('container');
-const button = document.getElementById('btn');
+console.log("JS FILE CONNECTED");
 
-const h2 = document.createElement('h2');
-h2.innerHTML = 'Data is loading...';
-
+const div = document.getElementById("container");
+const button = document.getElementById("btn");
 
 async function display() {
+
+    console.log("BUTTON CLICKED");
+
     try {
-        div.innerHTML = '';
-        div.appendChild(h2);
-        const serverdata = await fetch(
-            'https://fakestoreapi.com/products'
+
+        div.innerHTML = "<h2 class='loading'>Loading...</h2>";
+
+        const response = await fetch(
+            "https://fakestoreapi.com/products"
         );
-        const jsonData = await serverdata.json();
+
+        const jsonData = await response.json();
+
         console.log(jsonData);
-        const rows = jsonData.
-        map((ele) => `
+
+        const rows = jsonData.map((ele) => `
             <tr>
                 <td>${ele.id}</td>
                 <td>${ele.title}</td>
                 <td>$${ele.price}</td>
                 <td>${ele.description}</td>
                 <td>${ele.category}</td>
+
                 <td>
-                    <img src="${ele.image}" width="80">
+                    <img 
+                        src="${ele.image}" 
+                        width="70"
+                        height="70"
+                    >
                 </td>
-                <td>${ele.rating.rate}</td>
+
+                <td>⭐ ${ele.rating.rate}</td>
+
                 <td>${ele.rating.count}</td>
+
+                <td>
+                    <button
+                        class="cart-btn"
+                        onclick="addToCart(${ele.id})">
+                        Add to Cart
+                    </button>
+                </td>
             </tr>
-        `).join('');
+        `).join("");
+
         div.innerHTML = `
             <h2>All Products</h2>
 
-            <table border="1" cellpadding="10">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Image</th>
-                        <th>Rating</th>
-                        <th>Rating Count</th>
-                    </tr>
-                </thead>
+            <div class="table-container">
 
-                <tbody>
-                    ${rows}
-                </tbody>
-            </table>
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Image</th>
+                            <th>Rating</th>
+                            <th>Count</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        ${rows}
+                    </tbody>
+
+                </table>
+
+            </div>
         `;
 
-    } catch (e) {
-        console.log("Error is:", e);
+    } catch (error) {
+
+        console.error(error);
 
         div.innerHTML = `
-            <h2 style="color:red;">
-                Error loading data
-            </h2>
+            <div class="error">
+                ❌ Error loading products
+            </div>
         `;
-
-    } finally {
-        if (div.contains(h2)) {
-            div.removeChild(h2);
-        }
     }
 }
 
-button.addEventListener('click', display);
+
+function addToCart(id) {
+
+    alert("Product " + id + " added to cart!");
+
+}
+
+
+button.addEventListener("click", display);
